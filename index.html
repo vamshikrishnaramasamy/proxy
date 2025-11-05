@@ -12,223 +12,263 @@
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            background: #1a1a2e;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .navbar {
+            background: #16213e;
+            padding: 12px 20px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
+            gap: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            flex-wrap: wrap;
         }
-        .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        .url-container {
+            flex: 1;
+            display: flex;
+            gap: 8px;
+            min-width: 300px;
+        }
+        .url-input {
+            flex: 1;
+            padding: 10px 16px;
+            background: #0f3460;
+            border: 2px solid #1a508b;
+            border-radius: 8px;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+        .url-input:focus {
+            border-color: #3d85c6;
+            background: #0d2d4d;
+        }
+        .url-input::placeholder {
+            color: #7a8a9e;
+        }
+        .proxy-input {
+            width: 280px;
+            padding: 10px 16px;
+            background: #0f3460;
+            border: 2px solid #1a508b;
+            border-radius: 8px;
+            color: white;
+            font-size: 13px;
+            outline: none;
+        }
+        .proxy-input:focus {
+            border-color: #3d85c6;
+        }
+        .nav-btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #3d85c6, #2563eb);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
+        }
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .quick-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .quick-link {
+            padding: 6px 12px;
+            background: #0f3460;
+            border: 1px solid #1a508b;
+            border-radius: 6px;
+            color: #7dd3fc;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .quick-link:hover {
+            background: #1a508b;
+            border-color: #3d85c6;
+        }
+        .content {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+        iframe {
             width: 100%;
-            max-width: 700px;
-            padding: 50px;
-            text-align: center;
+            height: 100%;
+            border: none;
+            background: white;
         }
-        h1 {
+        .welcome {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            max-width: 700px;
+            padding: 40px;
+            background: #16213e;
+            border-radius: 16px;
+            border: 2px solid #3d85c6;
+        }
+        .welcome h1 {
             font-size: 48px;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #3d85c6, #2563eb);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .subtitle {
-            color: #666;
-            font-size: 18px;
-            margin-bottom: 40px;
-        }
-        .proxy-input-container {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-        }
-        .proxy-input-container label {
-            display: block;
-            color: #333;
-            font-weight: 600;
-            margin-bottom: 10px;
-            text-align: left;
-            font-size: 14px;
-        }
-        .proxy-input-container input {
-            width: 100%;
-            padding: 14px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 15px;
-            transition: border-color 0.3s;
-        }
-        .proxy-input-container input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        .proxy-input-container .hint {
-            color: #999;
-            font-size: 13px;
-            margin-top: 8px;
-            text-align: left;
-        }
-        .url-container {
-            margin-bottom: 30px;
-        }
-        .url-input {
-            width: 100%;
-            padding: 16px 20px;
-            border: 3px solid #e0e0e0;
-            border-radius: 12px;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
-        .url-input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-        }
-        .go-btn {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-bottom: 20px;
-        }
-        .go-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-        }
-        .go-btn:active {
-            transform: translateY(0);
-        }
-        .quick-links {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-        .quick-link {
-            padding: 10px 20px;
-            background: #f8f9fa;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            color: #667eea;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 14px;
-        }
-        .quick-link:hover {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-            transform: translateY(-2px);
+        .welcome p {
+            color: #cbd5e0;
+            margin-bottom: 15px;
+            line-height: 1.8;
         }
         .info-box {
-            background: #e8eaf6;
+            background: #0f3460;
+            border-left: 4px solid #48bb78;
             padding: 20px;
-            border-radius: 12px;
-            margin-top: 30px;
-            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            margin: 25px 0;
             text-align: left;
         }
         .info-box h3 {
-            color: #667eea;
-            margin-bottom: 12px;
+            color: #9ae6b4;
+            margin-bottom: 10px;
             font-size: 16px;
         }
         .info-box p {
-            color: #666;
-            line-height: 1.6;
+            color: #cbd5e0;
             font-size: 14px;
             margin-bottom: 8px;
         }
         .info-box code {
-            background: #fff;
+            background: #1a508b;
             padding: 3px 8px;
             border-radius: 4px;
-            color: #667eea;
+            color: #7dd3fc;
             font-size: 13px;
-            border: 1px solid #d0d0f0;
         }
-        .status {
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            display: none;
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .action-btn {
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #0f3460, #1a508b);
+            border: 2px solid #3d85c6;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+        }
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            padding: 40px;
+            background: #16213e;
+            border-radius: 16px;
+            border: 2px solid #3d85c6;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #1a508b;
+            border-top-color: #3d85c6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .status-text {
+            color: #7dd3fc;
             font-size: 14px;
-        }
-        .status.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        .status.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🌐</h1>
-        <p class="subtitle">Access Any Website Through Your Proxy</p>
-        
-        <div class="proxy-input-container">
-            <label for="proxyInput">Your Vercel Proxy URL</label>
-            <input 
-                type="text" 
-                id="proxyInput" 
-                placeholder="https://your-app.vercel.app"
-                autocomplete="off"
-            >
-            <p class="hint">Enter your Vercel deployment URL (saved automatically)</p>
-        </div>
-
-        <div class="status" id="status"></div>
-
+    <div class="navbar">
         <div class="url-container">
             <input 
                 type="text" 
                 class="url-input" 
                 id="urlInput" 
-                placeholder="Enter URL or search..."
+                placeholder="Enter URL..."
                 autocomplete="off"
             >
+            <input 
+                type="text" 
+                class="proxy-input" 
+                id="proxyInput" 
+                placeholder="Vercel Proxy URL"
+                autocomplete="off"
+            >
+            <button class="nav-btn" id="goBtn" onclick="loadUrl()">Go</button>
         </div>
-
-        <button class="go-btn" id="goBtn" onclick="loadUrl()">
-            Open in Proxy
-        </button>
-
         <div class="quick-links">
             <button class="quick-link" onclick="loadQuick('https://chatgpt.com')">ChatGPT</button>
             <button class="quick-link" onclick="loadQuick('https://claude.ai')">Claude</button>
             <button class="quick-link" onclick="loadQuick('https://google.com')">Google</button>
             <button class="quick-link" onclick="loadQuick('https://wikipedia.org')">Wikipedia</button>
         </div>
+    </div>
 
-        <div class="info-box">
-            <h3>✨ How it works</h3>
-            <p>• This opens websites in a <strong>new window</strong> through your proxy</p>
-            <p>• No iframe blocking issues</p>
-            <p>• Your Vercel proxy strips security headers and rewrites URLs</p>
-            <p>• Works with authenticated sites like ChatGPT</p>
-        </div>
+    <div class="content" id="content">
+        <div class="welcome" id="welcome">
+            <h1>🔗</h1>
+            <p style="font-size: 20px; color: white; margin-bottom: 25px;">
+                <strong>Double Proxy Setup</strong>
+            </p>
+            
+            <div class="info-box">
+                <h3>✓ How This Works</h3>
+                <p><strong>Chain of proxies:</strong></p>
+                <p style="margin-left: 15px;">You → GitHub Pages → Vercel Proxy → Target Site</p>
+                <p style="margin-top: 15px;">This lets you access your Vercel proxy (which is blocked) through GitHub Pages (which isn't blocked), and then access ChatGPT through that.</p>
+            </div>
 
-        <div class="info-box" style="margin-top: 15px; border-left-color: #f59e0b; background: #fffbeb;">
-            <h3 style="color: #d97706;">⚠️ Important</h3>
-            <p style="color: #92400e;">The proxied site will open in a new tab/window. Make sure pop-ups are allowed for this site.</p>
+            <div class="info-box" style="border-left-color: #7dd3fc; margin-top: 15px;">
+                <h3>📝 Setup Instructions</h3>
+                <p>1. Enter your Vercel proxy URL above (e.g., <code>https://your-app.vercel.app</code>)</p>
+                <p>2. Enter the website you want to visit</p>
+                <p>3. Click Go!</p>
+                <p style="margin-top: 10px; font-style: italic; color: #94a3b8;">The GitHub proxy will fetch from your Vercel proxy, which fetches from the target site.</p>
+            </div>
+
+            <div class="button-group">
+                <button class="action-btn" onclick="document.getElementById('proxyInput').focus()">
+                    Enter Vercel URL
+                </button>
+            </div>
         </div>
     </div>
 
@@ -236,7 +276,8 @@
         const urlInput = document.getElementById('urlInput');
         const proxyInput = document.getElementById('proxyInput');
         const goBtn = document.getElementById('goBtn');
-        const statusEl = document.getElementById('status');
+        const content = document.getElementById('content');
+        const welcome = document.getElementById('welcome');
 
         // Load saved proxy URL
         const savedProxy = localStorage.getItem('vercelProxyUrl');
@@ -244,14 +285,37 @@
             proxyInput.value = savedProxy;
         }
 
-        function showStatus(message, type) {
-            statusEl.textContent = message;
-            statusEl.className = 'status ' + type;
-            statusEl.style.display = 'block';
-            
-            setTimeout(() => {
-                statusEl.style.display = 'none';
-            }, 5000);
+        // Available public CORS proxies to chain through
+        const PUBLIC_PROXIES = [
+            { name: 'AllOrigins', url: (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}` },
+            { name: 'CORS Proxy', url: (u) => `https://corsproxy.io/?${encodeURIComponent(u)}` },
+        ];
+
+        let currentProxyIndex = 0;
+
+        function showLoading(message) {
+            content.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p class="status-text">${message}</p>
+                </div>
+            `;
+        }
+
+        function showError(message) {
+            content.innerHTML = `
+                <div class="welcome">
+                    <h1>❌</h1>
+                    <div class="info-box" style="border-left-color: #e53e3e;">
+                        <h3 style="color: #fc8181;">Error</h3>
+                        <p style="color: #feb2b2;">${message}</p>
+                    </div>
+                    <div class="button-group">
+                        <button class="action-btn" onclick="tryNextProxy()">Try Different Proxy</button>
+                        <button class="action-btn" onclick="location.reload()">Start Over</button>
+                    </div>
+                </div>
+            `;
         }
 
         function loadQuick(url) {
@@ -260,55 +324,96 @@
         }
 
         function loadUrl() {
-            let url = urlInput.value.trim();
-            let proxyUrl = proxyInput.value.trim();
+            let targetUrl = urlInput.value.trim();
+            let vercelProxy = proxyInput.value.trim();
             
-            if (!url) {
-                showStatus('Please enter a URL', 'error');
+            if (!targetUrl) {
+                alert('Please enter a URL');
                 return;
             }
 
-            if (!proxyUrl) {
-                showStatus('Please enter your Vercel proxy URL first', 'error');
+            if (!vercelProxy) {
+                alert('Please enter your Vercel proxy URL');
                 proxyInput.focus();
                 return;
             }
 
-            // Normalize URLs
-            if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                // Check if it looks like a URL or a search query
-                if (url.includes('.') && !url.includes(' ')) {
-                    url = 'https://' + url;
-                } else {
-                    url = 'https://www.google.com/search?q=' + encodeURIComponent(url);
-                }
-                urlInput.value = url;
+            // Normalize target URL
+            if (!targetUrl.startsWith('http://') && !targetUrl.startsWith('https://')) {
+                targetUrl = 'https://' + targetUrl;
+                urlInput.value = targetUrl;
             }
 
-            // Remove trailing slash from proxy URL
-            proxyUrl = proxyUrl.replace(/\/$/, '');
+            // Remove trailing slash from Vercel proxy
+            vercelProxy = vercelProxy.replace(/\/$/, '');
 
-            // Validate proxy URL
+            // Validate Vercel proxy URL
             try {
-                new URL(proxyUrl);
+                new URL(vercelProxy);
             } catch (e) {
-                showStatus('Invalid proxy URL format', 'error');
+                alert('Invalid Vercel proxy URL');
                 return;
             }
 
-            // Save proxy URL
-            localStorage.setItem('vercelProxyUrl', proxyUrl);
+            // Save Vercel proxy URL
+            localStorage.setItem('vercelProxyUrl', vercelProxy);
 
-            // Construct the full proxy URL
-            const fullProxyUrl = `${proxyUrl}/api/proxy?url=${encodeURIComponent(url)}`;
-
-            // Open in new window/tab
-            const newWindow = window.open(fullProxyUrl, '_blank');
+            goBtn.disabled = true;
+            currentProxyIndex = 0;
             
-            if (newWindow) {
-                showStatus('✓ Opening in new tab...', 'success');
+            // Hide welcome screen
+            if (welcome) {
+                welcome.style.display = 'none';
+            }
+
+            loadWithChainedProxy(targetUrl, vercelProxy);
+        }
+
+        function loadWithChainedProxy(targetUrl, vercelProxy) {
+            const publicProxy = PUBLIC_PROXIES[currentProxyIndex];
+            
+            showLoading(`Loading via ${publicProxy.name}...`);
+
+            // Build the chain: PublicProxy → VercelProxy → TargetSite
+            const vercelProxyUrl = `${vercelProxy}/api/proxy?url=${encodeURIComponent(targetUrl)}`;
+            const chainedProxyUrl = publicProxy.url(vercelProxyUrl);
+
+            const iframe = document.createElement('iframe');
+            iframe.src = chainedProxyUrl;
+            
+            let loaded = false;
+
+            iframe.onload = function() {
+                loaded = true;
+                goBtn.disabled = false;
+            };
+
+            iframe.onerror = function() {
+                if (!loaded) {
+                    tryNextProxy();
+                }
+            };
+
+            // Timeout
+            setTimeout(() => {
+                if (!loaded) {
+                    goBtn.disabled = false;
+                }
+            }, 10000);
+
+            content.innerHTML = '';
+            content.appendChild(iframe);
+        }
+
+        function tryNextProxy() {
+            currentProxyIndex++;
+            if (currentProxyIndex < PUBLIC_PROXIES.length) {
+                const targetUrl = urlInput.value.trim();
+                const vercelProxy = proxyInput.value.trim();
+                loadWithChainedProxy(targetUrl, vercelProxy);
             } else {
-                showStatus('⚠️ Pop-up blocked! Please allow pop-ups for this site.', 'error');
+                showError('All proxy chains failed. The Vercel proxy may be inaccessible or the target site has strong protections.');
+                goBtn.disabled = false;
             }
         }
 
@@ -325,11 +430,27 @@
             }
         });
 
-        // Focus on URL input if proxy is already saved
+        // Auto-update welcome screen if proxy is saved
         if (savedProxy) {
-            urlInput.focus();
-        } else {
-            proxyInput.focus();
+            welcome.innerHTML = `
+                <h1>🌐</h1>
+                <p style="font-size: 18px; color: white; margin-bottom: 25px;">
+                    <strong>Ready to Browse</strong>
+                </p>
+                <div class="info-box">
+                    <h3>✓ Vercel Proxy Configured</h3>
+                    <p>Using: <code>${savedProxy}</code></p>
+                    <p style="margin-top: 10px;">Enter a URL above or click a quick link to get started!</p>
+                </div>
+                <div class="button-group">
+                    <button class="action-btn" onclick="loadQuick('https://chatgpt.com')">
+                        Open ChatGPT
+                    </button>
+                    <button class="action-btn" onclick="loadQuick('https://wikipedia.org')">
+                        Open Wikipedia
+                    </button>
+                </div>
+            `;
         }
     </script>
 </body>
