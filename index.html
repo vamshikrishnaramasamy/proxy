@@ -25,6 +25,13 @@
             align-items: center;
             gap: 12px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            flex-wrap: wrap;
+        }
+        .url-container {
+            flex: 1;
+            display: flex;
+            gap: 8px;
+            min-width: 300px;
         }
         .url-input {
             flex: 1;
@@ -64,9 +71,23 @@
             cursor: not-allowed;
             transform: none;
         }
+        .proxy-select {
+            padding: 10px 16px;
+            background: #0f3460;
+            border: 2px solid #1a508b;
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+        }
+        .proxy-select option {
+            background: #16213e;
+        }
         .quick-links {
             display: flex;
             gap: 8px;
+            flex-wrap: wrap;
         }
         .quick-link {
             padding: 6px 12px;
@@ -77,7 +98,6 @@
             font-size: 13px;
             cursor: pointer;
             transition: all 0.2s;
-            text-decoration: none;
         }
         .quick-link:hover {
             background: #1a508b;
@@ -92,6 +112,70 @@
             width: 100%;
             height: 100%;
             border: none;
+            background: white;
+        }
+        .welcome {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            max-width: 700px;
+            padding: 40px;
+        }
+        .welcome h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #3d85c6, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .welcome p {
+            color: #cbd5e0;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .welcome-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .welcome-link {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #0f3460, #1a508b);
+            border: 2px solid #3d85c6;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        .welcome-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+            border-color: #60a5fa;
+        }
+        .info-box {
+            background: #0f3460;
+            border: 2px solid #1a508b;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        .info-box h3 {
+            color: #7dd3fc;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .info-box ul {
+            color: #cbd5e0;
+            margin-left: 20px;
+            font-size: 14px;
+            line-height: 1.8;
         }
         .loading {
             position: absolute;
@@ -112,97 +196,57 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-        .error {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            max-width: 500px;
-            padding: 30px;
-            background: #16213e;
-            border-radius: 12px;
-            border: 2px solid #e53e3e;
-        }
-        .error h2 {
-            color: #fc8181;
-            margin-bottom: 15px;
-        }
-        .error p {
-            color: #cbd5e0;
-            line-height: 1.6;
-        }
-        .welcome {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            max-width: 600px;
-            padding: 40px;
-        }
-        .welcome h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #3d85c6, #2563eb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .welcome p {
-            color: #cbd5e0;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        .welcome-links {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .welcome-link {
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #0f3460, #1a508b);
-            border: 2px solid #3d85c6;
-            border-radius: 8px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-        }
-        .welcome-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-            border-color: #60a5fa;
-        }
     </style>
 </head>
 <body>
     <div class="navbar">
-        <input 
-            type="text" 
-            class="url-input" 
-            id="urlInput" 
-            placeholder="Enter URL or search..."
-            autocomplete="off"
-        >
-        <button class="nav-btn" id="goBtn" onclick="loadUrl()">Go</button>
+        <div class="url-container">
+            <input 
+                type="text" 
+                class="url-input" 
+                id="urlInput" 
+                placeholder="Enter URL..."
+                autocomplete="off"
+            >
+            <select class="proxy-select" id="proxySelect">
+                <option value="direct">Direct</option>
+                <option value="allorigins">AllOrigins</option>
+                <option value="corsproxy">CORS Proxy</option>
+                <option value="thingproxy">ThingProxy</option>
+            </select>
+            <button class="nav-btn" id="goBtn" onclick="loadUrl()">Go</button>
+        </div>
         <div class="quick-links">
-            <a class="quick-link" onclick="loadQuick('https://chat.openai.com')">ChatGPT</a>
-            <a class="quick-link" onclick="loadQuick('https://claude.ai')">Claude</a>
-            <a class="quick-link" onclick="loadQuick('https://google.com')">Google</a>
+            <button class="quick-link" onclick="loadQuick('https://chatgpt.com')">ChatGPT</button>
+            <button class="quick-link" onclick="loadQuick('https://claude.ai')">Claude</button>
+            <button class="quick-link" onclick="loadQuick('https://google.com')">Google</button>
+            <button class="quick-link" onclick="loadQuick('https://www.wikipedia.org')">Wikipedia</button>
         </div>
     </div>
 
     <div class="content" id="content">
         <div class="welcome" id="welcome">
             <h1>🌐 Network Proxy</h1>
-            <p>Access blocked websites through this proxy. Enter a URL above or click a quick link below to get started.</p>
+            <p>Access blocked websites by routing them through proxy services.</p>
+            
+            <div class="info-box">
+                <h3>📌 How to Use:</h3>
+                <ul>
+                    <li><strong>Direct:</strong> Try loading the site directly (may work if only DNS is blocked)</li>
+                    <li><strong>AllOrigins:</strong> Good for simple sites and APIs</li>
+                    <li><strong>CORS Proxy:</strong> Alternative proxy service</li>
+                    <li><strong>ThingProxy:</strong> Another option if others fail</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 20px; font-size: 14px; color: #94a3b8;">
+                ⚠️ Note: Complex sites like ChatGPT may have limited functionality through proxies. 
+                For best results with authenticated sites, consider using a VPN.
+            </p>
+
             <div class="welcome-links">
-                <button class="welcome-link" onclick="loadQuick('https://chat.openai.com')">
-                    Open ChatGPT
-                </button>
-                <button class="welcome-link" onclick="loadQuick('https://claude.ai')">
-                    Open Claude
+                <button class="welcome-link" onclick="loadQuick('https://chatgpt.com')">
+                    Try ChatGPT
                 </button>
                 <button class="welcome-link" onclick="loadQuick('https://google.com')">
                     Open Google
@@ -215,6 +259,7 @@
         const urlInput = document.getElementById('urlInput');
         const goBtn = document.getElementById('goBtn');
         const content = document.getElementById('content');
+        const proxySelect = document.getElementById('proxySelect');
 
         function showLoading() {
             content.innerHTML = `
@@ -225,59 +270,65 @@
             `;
         }
 
-        function showError(message) {
-            content.innerHTML = `
-                <div class="error">
-                    <h2>⚠️ Error</h2>
-                    <p>${message}</p>
-                </div>
-            `;
-        }
-
         function loadQuick(url) {
             urlInput.value = url;
             loadUrl();
         }
 
-        async function loadUrl() {
+        function getProxyUrl(url, proxyType) {
+            const encoded = encodeURIComponent(url);
+            
+            switch(proxyType) {
+                case 'allorigins':
+                    return `https://api.allorigins.win/raw?url=${encoded}`;
+                case 'corsproxy':
+                    return `https://corsproxy.io/?${encoded}`;
+                case 'thingproxy':
+                    return `https://thingproxy.freeboard.io/fetch/${url}`;
+                case 'direct':
+                default:
+                    return url;
+            }
+        }
+
+        function loadUrl() {
             let url = urlInput.value.trim();
             
             if (!url) {
-                showError('Please enter a URL');
                 return;
             }
 
             if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                if (url.includes('.')) {
-                    url = 'https://' + url;
-                } else {
-                    url = 'https://www.google.com/search?q=' + encodeURIComponent(url);
-                }
+                url = 'https://' + url;
                 urlInput.value = url;
             }
 
+            const proxyType = proxySelect.value;
             goBtn.disabled = true;
             showLoading();
 
             try {
                 const iframe = document.createElement('iframe');
-                iframe.src = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-                iframe.sandbox = 'allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox';
+                const proxyUrl = getProxyUrl(url, proxyType);
+                iframe.src = proxyUrl;
                 
                 iframe.onload = function() {
                     goBtn.disabled = false;
                 };
 
                 iframe.onerror = function() {
-                    showError('Failed to load the page. The site may have security restrictions that prevent proxy access.');
                     goBtn.disabled = false;
                 };
+
+                setTimeout(() => {
+                    goBtn.disabled = false;
+                }, 5000);
 
                 content.innerHTML = '';
                 content.appendChild(iframe);
 
             } catch (error) {
-                showError(`Error: ${error.message}`);
+                console.error('Error:', error);
                 goBtn.disabled = false;
             }
         }
@@ -285,12 +336,6 @@
         urlInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 loadUrl();
-            }
-        });
-
-        document.getElementById('welcome')?.addEventListener('click', (e) => {
-            if (e.target.tagName === 'BUTTON') {
-                e.stopPropagation();
             }
         });
     </script>
